@@ -1,9 +1,9 @@
 <template lang="pug">
-  router-view
+  .h1 Home
 </template>
 
 <script>
-export default {
-  name: "App",
-}
+export default ({
+  name: "HomePage",
+})
 </script>
