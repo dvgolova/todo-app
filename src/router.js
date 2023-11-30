@@ -1,6 +1,6 @@
 import VueRouter from "vue-router"
-import HomePage from "@/pages/HomePage.vue"
-import NotesPage from "@/pages/NotesPage.vue"
+import HomePage from "@/pages/home/HomePage.vue"
+import NotesPage from "@/pages/notes/NotesPage.vue"
 
 export default new VueRouter({
   routes: [

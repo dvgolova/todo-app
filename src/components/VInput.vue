@@ -13,10 +13,10 @@
       )
       .icon.flex.center-align(v-if="type === 'password'", v-on:click.stop="visible = !visible")
         v-icon(:name="visible ? 'on-password' : 'off-password'", color="var(--green-light-color)")
-    .footer.flex
+    .footer.flex(v-if="errorMessage || counter")
       .error
         span(v-if="!valid && errorMessage") {{errorMessage}}
-      .counter {{wordsCounter}}/100
+      .counter(v-if="counter") {{wordsCounter}}/100
 </template>
 
 <script>
@@ -30,6 +30,10 @@ export default ({
     value: String,
     rule: Function,
     errorMessage: String,
+    counter: {
+      type: Boolean,
+      default: false,
+    },
     type: {
       type: String,
       default: "text",
@@ -39,7 +43,7 @@ export default ({
     return {
       focused: false,
       valid: true,
-      visible: true,
+      visible: false,
     }
   },
   computed: {
@@ -70,18 +74,21 @@ export default ({
       this.valid = this.rule(e.target.value)
     }
   },
+  mounted() {
+    console.log(this.counter)
+  }
 })
 </script>
 
 <style scoped lang="sass">
 .wrapper
   width: 100%
-  row-gap: 8px
   flex-direction: column
 .label, .counter
   color: var(--grey-color)
 .label
   margin-left: 24px
+  margin-bottom: 8px
 .input
   height: 72px
   width: 100%
@@ -108,7 +115,7 @@ input
   color: var(--red-color)
 .footer
   justify-content: space-between
-  margin: 0 24px
+  margin: 8px 24px 0 24px
 .icon
   margin-left: 12px
   height: 100%
