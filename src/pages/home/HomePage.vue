@@ -2,33 +2,41 @@
   .page-wrapper.h-full.w-full.flex
     .header.flex.center-align
       img.logo(src="@/assets/svg/logo.svg", alt="logo")
-      .log-btn
+      .log-btn(v-on:click="openModal")
         v-button(icon="login", label="Вход")
     .body.flex.h-full.w-full
       .heading.flex
         .h1 Мои заметки
         .h3 Не забывай о важном, храни его в облаке.
       img.notes-img(src="@/assets/png/notes.png", alt="notes")
-    v-modal(title="Вход в ваш аккаунт", v-if="true")
-      <template v-slot:content>
-        .modal-content
-      </template>
+    login-modal(v-if="open", :closeModal="closeModal")
 </template>
 
 <script>
 import VButton from "@/components/VButton.vue";
 import VIcon from "@/components/VIcon.vue";
 import VModal from "@/components/VModal.vue";
+import LoginModal from "@/pages/home/components/LoginModal.vue"
 export default ({
   name: "HomePage",
-  components: { VButton, VIcon, VModal},
+  components: { VButton, VIcon, VModal, LoginModal},
+  data() {
+    return {
+      open: false,
+    }
+  },
+  methods: {
+    closeModal() {
+      this.open = false;
+    },
+    openModal() {
+      this.open = true;
+    },
+  }
 })
 </script>
 
 <style scoped lang="sass">
-.modal-content
-  height: 240px
-  width: 320px
 .page-wrapper
   flex-direction: column
   position: relative

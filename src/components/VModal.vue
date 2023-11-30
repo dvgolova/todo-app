@@ -1,14 +1,12 @@
 <template lang="pug">
   .modal-wrapper.w-full.h-full
-    .darkening-layer.w-full.h-full
+    .darkening-layer.w-full.h-full(v-on:click="close")
     .modal.flex
-      .button-wrapper
-        v-button(icon="close", round, v-on:click="close")
+      .button-wrapper(v-on:click="close")
+        v-button(icon="close", round)
       .content.flex
         .title.h2(v-if="title") {{title}}
-        slot(name="content")
-        .footer.flex
-          slot(name="footer")
+        slot
 </template>
 
 <script>
@@ -18,14 +16,15 @@ export default ({
   components: { VButton },
   props: {
     title: String,
-    close: Function,
+    close: {
+      type: Function,
+      default: () => {}
+    },
   },
   data() {
     return {
       open: false,
     }
-  },
-  computed: {
   },
 })
 </script>
@@ -56,8 +55,8 @@ export default ({
 .h2
   color: var(--white-color)
   width: 100%
-.footer
-  justify-content: space-between
+// .footer
+//   justify-content: space-between
 @media (min-width: 1366px)
   .content
     padding: 80px
@@ -77,6 +76,6 @@ export default ({
   .h2
     font-size: 32px
     line-height: 36px
-  .footer
-    flex-direction: column
+  // .footer
+  //   flex-direction: column
 </style>

@@ -24,6 +24,7 @@ export default ({
   height: 56px
   background-color: var(--green-light-color)
   border: none
+  cursor: pointer
   &:hover
     background-color: var(--green-middle-color)
   &:disabled
