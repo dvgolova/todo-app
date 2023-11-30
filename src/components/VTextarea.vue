@@ -1,57 +1,61 @@
 <template lang="pug">
   .wrapper.flex.text-small
     .label(v-if="label") {{label}}
-    .input.flex(:style="inputStyle", v-on:click="focusOnInput")
-      input(
+    .textarea.flex(:style="{...textareaFocusStyle, ...textareaHeightStyle}", v-on:click="focusOnInput")
+      textarea(
         :placeholder="placeholder",
         v-on:focus="focused = true",
         v-on:blur="focused = false",
         v-model="internalValue",
         ref="input",
-        maxlength="100",
+        maxlength="500",
         v-on:input="checkRule"
       )
-      .icon.flex.center-align(v-if="type === 'password'", v-on:click.stop="visible = !visible")
-        v-icon(:name="visible ? 'on-password' : 'off-password'", color="var(--green-light-color)")
+      .icon.flex.center-align(v-if="icon", v-on:click.stop)
+        v-icon(:name="icon", color="var(--green-light-color)")
     .footer.flex
       .error
         span(v-if="!valid && errorMessage") {{errorMessage}}
-      .counter {{wordsCounter}}/100
+      .counter {{wordsCounter}}/500
 </template>
 
 <script>
 import VIcon from "@/components/VIcon.vue";
 export default ({
-  name: "VInput",
+  name: "VTextarea",
   components: {VIcon},
   props: {
     label: String,
+    icon: String,
     placeholder: String,
     value: String,
     rule: Function,
     errorMessage: String,
-    type: {
-      type: String,
-      default: "text",
-    }
+    height: {
+      type: Number,
+      default: 280,
+    },
   },
   data() {
     return {
       focused: false,
       valid: true,
-      visible: true,
     }
   },
   computed: {
-    inputStyle() {
+    textareaFocusStyle() {
       if (this.focused) return {
         border: "2px solid var(--green-color)",
       }
       return {}
     },
+    textareaHeightStyle() {
+      return {
+        height: this.height + "px"
+      }
+    },
     internalValue: {
       get() {
-        if (this.type === "password" && !this.visible) return "*".repeat(this.value.length)
         return this.value;
       },
       set(val) {
@@ -82,11 +86,9 @@ export default ({
   color: var(--grey-color)
 .label
   margin-left: 24px
-.input
-  height: 72px
+.textarea
   width: 100%
-  padding: 22px 28px
-  justify-content: space-between
+  padding: 16px 28px
   border-radius: 36px
   border: 2px solid var(--white-color)
   background-color: var(--white-color)
@@ -94,13 +96,14 @@ export default ({
   cursor: text
   &:hover
     border: 2px solid var(--green-color)
-input
+textarea
   display: flex
   width: 100%
   height: 100%
   padding: 0px 0px
   border: none
   outline: none
+  resize: none
   color: var(--dark-color)
   &::placeholder
     color: var(--grey-color)
