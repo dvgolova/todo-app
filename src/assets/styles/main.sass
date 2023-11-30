@@ -1,14 +1,21 @@
 @import "fonts.sass"
 @import "variables.sass"
 
-#app
-  font-family: Montserrat
+html
   height: 100%
   width: 100%
-  box-sizing: border-box
+
+body
   background-color: var(--dark-color)
+  font-family: Montserrat-Regular
+  height: 100%
+  width: 100%
+
+div
+  box-sizing: border-box
 
 .h1
+  font-family: Montserrat-Bold
   font-weight: 900
   font-size: 104px
   line-height: 104px
@@ -49,3 +56,11 @@
 .center-align
   justify-content: center
   align-items: center
+
+.h-full
+  height: 100%
+.w-full
+  width: 100%
+
+.page
+  //background-color: var(--dark-color)

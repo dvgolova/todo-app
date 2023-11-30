@@ -1,9 +1,10 @@
 <template lang="pug">
-  .h1 Home
+  .page
+    .h1 Notes
 </template>
 
 <script>
 export default ({
-  name: "HomePage",
+  name: "NotesPage",
 })
 </script>

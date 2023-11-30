@@ -1,6 +1,6 @@
 <template lang="pug">
-  button.btn.flex.center-align(:class="{round: round, default: !round}", :disabled="disabled")
-    .icon.flex.center
+  button.btn.flex.center-align.w-full(:class="{round: round, default: !round}", :disabled="disabled")
+    .icon.flex.center-align(v-if="icon")
       v-icon(:name="icon", color="var(--white-color)")
     .label.text-normal(v-if="!round") {{label}}
 </template>
