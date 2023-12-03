@@ -3,14 +3,13 @@
     .input-wrapper.flex
       v-input(label="Email", placeholder="Введите Email", v-model="email")
       v-input(label="Пароль", placeholder="Введите пароль", v-model="password", type="password")
+      v-input(label="Пароль ещё раз", placeholder="Введите пароль", v-model="password", type="password")
     .footer.w-full
       .info.flex
         .message.flex
-          span.text-small У вас нет аккаунта?
-          button.login-button.text-small-bold(v-on:click="changeModal('registration')") Зарегистрируйтесь
-        v-button.button(label="Войти")
-      .authorization-error.w-full(v-if="unauthorized")
-        span.text-small Пользователь с таким логином не найден
+          span.text-small У вас есть аккаунт?
+          button.login-button.text-small-bold(v-on:click="changeModal('login')") Войти
+        v-button.button(label="Зарегистрироваться")
 </template>
 
 <script>
@@ -18,7 +17,7 @@ import VButton from "@/components/VButton.vue";
 import VInput from "@/components/VInput.vue";
 import VModal from "@/components/VModal.vue";
 export default ({
-  name: "LoginModal",
+  name: "RegistrationModal",
   components: { VButton, VInput, VModal},
   props: {
     changeModal: {
@@ -30,7 +29,7 @@ export default ({
     return {
       email: "",
       password: "",
-      unauthorized: false,
+      copiedPassword: "",
     }
   },
 })
@@ -58,7 +57,7 @@ export default ({
   padding: 0
 
 .button
-  width: 114px
+  width: 268px
 
 .authorization-error
   border-radius: 24px
@@ -70,24 +69,25 @@ export default ({
 @media (min-width: 1366px)
   .input-wrapper
     width: 620px
-    height: 240px
+    height: 372px
 @media (max-width: 1366px)
   .input-wrapper
     width: 482px
-    height: 240px
+    height: 372px
   .message
     flex-direction: column
+    align-items: start
 
 @media (max-width: 768px)
   .input-wrapper
     width: 576px
-    height: 240px
+    height: 372px
   .message
     flex-direction: row
 @media (max-width: 360px)
   .input-wrapper
     width: 320px
-    height: 232px
+    height: 356px
     row-gap: 16px
     margin-bottom: 28px
   .footer
@@ -97,11 +97,9 @@ export default ({
     line-height: 24px
   .info
     flex-direction: column
-    row-gap: 12px
+    row-gap: 20px
   .message
     order: 2
   .button
     width: 100%
-  .authorization-error
-    margin-top: 12px
 </style>

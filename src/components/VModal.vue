@@ -32,6 +32,7 @@ export default ({
 <style scoped lang="sass">
 .modal-wrapper
   position: absolute
+  z-index: 1000
 .darkening-layer
   position: absolute
   opacity: 0.7
@@ -55,8 +56,6 @@ export default ({
 .h2
   color: var(--white-color)
   width: 100%
-// .footer
-//   justify-content: space-between
 @media (min-width: 1366px)
   .content
     padding: 80px
@@ -72,10 +71,8 @@ export default ({
 @media (max-width: 360px)
   .content
     row-gap: 28px
-    padding: 90px 16px 24px 16px
+    padding: 24px 16px
   .h2
     font-size: 32px
     line-height: 36px
-  // .footer
-  //   flex-direction: column
 </style>
