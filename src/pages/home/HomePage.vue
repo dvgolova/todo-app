@@ -1,87 +1,90 @@
 <template lang="pug">
-  .body.flex.h-full.w-full
-    .heading.flex
-      .h1 Мои заметки
-      .h3 Не забывай о важном, храни его в облаке.
-    img.notes-img(src="@/assets/png/notes.png", alt="notes")
+  .page.flex.h-full.w-full
+    v-button.add-button.absolute(icon="add", round, @click.native="openModal")
+    .cell.w-full(v-for="note of notes", :key="note.id", :note="note")
+      home-note(:note="note")
 </template>
 
 <script>
+import VButton from "@/components/VButton.vue";
+import HomeNote from "@/pages/home/components/HomeNote.vue";
 export default ({
   name: "HomePage",
+  components: { VButton, HomeNote },
+  props: {
+    openModal: {
+      type: Function,
+      default: () => {}
+    }
+  },
+  data() {
+    return {
+      notes: [
+        {
+          id: 0,
+          title: "Заголовок",
+          content: "А также явные признаки победы институционализации могут быть объединены в целые кластеры себе подобных."
+        },
+        {
+          id: 1,
+          title: "Заголовок",
+          content: "Не следует, однако, забывать, что базовый вектор развития предопределяет высокую востребованность позиций, занимаемых участниками в отношении поставленных задач. Вот вам яркий пример современных тенденций — повышение уровня гражданского сознания требует анализа переосмысления внешнеэкономических политик."
+        },
+        {
+          id: 2,
+          title: "Заголовок",
+          content: "А также явные признаки победы институционализации могут быть объединены в целые кластеры себе подобных."
+        },
+        {
+          id: 3,
+          title: "Пример заголовока заметки в две строчки",
+          content: "А также явные признаки победы институционализации могут быть объединены в целые кластеры себе подобных."
+        },
+        {
+          id: 4,
+          title: "Заголовок",
+          content: "А также явные признаки победы институционализации могут быть объединены в целые кластеры себе подобных."
+        },
+      ]
+    }
+  },
+  created() {
+    console.log(typeof this.openModal)
+  }
 })
 </script>
 
 <style scoped lang="sass">
-.heading
-  flex-direction: column
-  row-gap: 40px
-  align-items: start
-  justify-content: center
-.body
+.page
   flex: 1
-  justify-content: space-between
-.h1
-  color: var(--white-color)
-.h3
-  color: var(--grey-color)
-  width: 394px
+  overflow-y: auto
+  display: grid
+  padding: 40px 0
+  &::-webkit-scrollbar
+    width: 0
+.add-button
+  position: fixed
+  bottom: 40px
+  box-shadow: 0px 15px 46px -10px rgba(0, 0, 0, 0.60)
 
 @media (min-width: 1366px)
-  .notes-img
-    width: 898px
-    height: 864px
-  .heading
-    align-items: start
-    justify-content: center
+  .page
+    grid-template-columns: repeat(3, 1fr)
+    gap: 40px
+  .add-button
+    right: 40px
 
 @media (max-width: 1366px)
-  .notes-img
-    width: 626px
-    height: 604px
-
+  .page
+    gap: 20px
+  .add-button
+    right: 12px
+  
 @media (max-width: 768px)
-  .body
-    flex-direction: column
-    padding-top: 40px
-    align-items: center
-  .heading
-    row-gap: 20px
-    align-items: center
-  .notes-img
-    width:  560px
-    height: 540px
-  .h3
-    display: inline-block
-    text-align: center
-    width: 100%
-    height: 96px
-  .h1
-    display: inline-block
-    text-align: center
+  .add-button
+    right: 8px
 
 @media (max-width: 360px)
-  .body
-    flex-direction: column
-    padding-top: 20px
-    align-items: center
-  .heading
-    row-gap: 20px
-    align-items: center
-  .notes-img
-    width:  298px
-    height: 286px
-  .h3
-    display: inline-block
-    text-align: center
-    width: 100%
-    height: 72px
-    font-size: 24px
-    line-height: 36px
-  .h1
-    display: inline-block
-    text-align: center
-    font-size: 60px
-    line-height: 64px
-
+  .page
+    padding: 20px 0
 </style>
