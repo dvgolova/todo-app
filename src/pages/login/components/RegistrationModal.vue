@@ -4,7 +4,7 @@
       v-input(label="Email", placeholder="Введите Email", v-model="email")
       v-input(label="Пароль", placeholder="Введите пароль", v-model="password", type="password")
       v-input(label="Пароль ещё раз", placeholder="Введите пароль", v-model="password", type="password")
-    .footer.w-full
+    footer.footer.w-full
       .info.flex
         .message.flex
           span.text-small У вас есть аккаунт?

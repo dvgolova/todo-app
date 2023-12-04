@@ -2,24 +2,25 @@
   #app
     v-modal(:title="currentModal?.title", :close="closeModal", v-if="open")
       <template v-slot>
-        component(v-bind:is="currentModal?.component", :changeModal="changeModal")
+        component(v-bind:is="currentModal?.component", :change-modal="changeModal")
       </template>
     .page-wrapper.h-full.w-full.flex
-      .header.flex.center-align
-        img.logo(src="@/assets/svg/logo.svg", alt="logo")
-        .log-btn
-          v-button(icon="login", label="Вход", @click.native="openModal")
-      router-view
+      the-header(:open-modal="openModal", :small-screen="smallScreen")
+      router-view(:open-modal="openModal")
 </template>
 
 <script>
 import VButton from "@/components/VButton.vue";
 import VModal from "@/components/VModal.vue";
-import LoginModal from "@/pages/home/components/LoginModal.vue";
-import RegistrationModal from "@/pages/home/components/RegistrationModal.vue"
+import VIcon from "@/components/VIcon.vue";
+import LoginModal from "@/pages/login/components/LoginModal.vue";
+import RegistrationModal from "@/pages/login/components/RegistrationModal.vue";
+import CreateNoteModal from "@/pages/home/components/CreateNoteModal.vue";
+import TheHeader from "@/components/TheHeader.vue";
+//TODO семантика p, h
 export default {
   name: "App",
-  components: { VButton, VModal, LoginModal, RegistrationModal },
+  components: { VButton, VModal, LoginModal, RegistrationModal, VIcon, CreateNoteModal, TheHeader },
   data() {
     return {
       open: false,
@@ -33,16 +34,21 @@ export default {
           component: "registration-modal",
           id: "registration",
           title: "Регистрация",
-        }
+        },
+        {
+          component: "create-note-modal",
+          id: "create-note",
+          title: "Добавление заметки",
+        },
       ],
       currentModal: {},
+      smallScreen: false,
     }
   },
   methods: {
     closeModal() {
       this.open = false;
-      //this.changeModal(this.$route.path === "/" ? "login" : "out")
-      this.currentModal = this.modals[0]
+      this.changeModal(this.$route.path === "/" ? "login" : "create-note")
     },
     openModal() {
       this.open = true;
@@ -56,8 +62,12 @@ export default {
       immediate: true,
       handler(value) {
         if (value === "/") this.currentModal = this.modals[0];
+        else this.currentModal = this.modals[2];
       }
     }
+  },
+  mounted() {
+    this.smallScreen = document.getElementById("app").offsetWidth === 360;
   }
 }
 </script>
@@ -66,42 +76,20 @@ export default {
   flex-direction: column
   position: relative
 
-.header
-  justify-content: space-between
-
-.log-btn
-  width: 144px
-
 @media (min-width: 1366px)
-  .header
-    padding: 40px 0
   .page-wrapper
     padding: 0 160px
 
 @media (max-width: 1366px)
-  .header
-    padding: 20px 0
   .page-wrapper
     padding: 0 80px
 
 @media (max-width: 768px)
-  .header
-    padding: 20px 0
   .page-wrapper
     padding: 0 40px
 
-@media (max-width: 1920px) and (min-width: 360px)
-  .logo
-    width: 180px
-    height: 50px
-
 @media (max-width: 360px)
-  .header
-    padding: 20px 0
   .page-wrapper
     padding: 0 20px
-  .logo
-    width: 154px
-    height: 36px
 </style>
 

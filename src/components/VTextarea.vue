@@ -31,10 +31,7 @@ export default ({
     value: String,
     rule: Function,
     errorMessage: String,
-    height: {
-      type: Number,
-      default: 280,
-    },
+    height: Number,
   },
   data() {
     return {
@@ -50,9 +47,10 @@ export default ({
       return {}
     },
     textareaHeightStyle() {
-      return {
+      if (this.height) return {
         height: this.height + "px"
       }
+      return {}
     },
     internalValue: {
       get() {
@@ -88,6 +86,7 @@ export default ({
   margin-left: 24px
 .textarea
   width: 100%
+  height: 280px
   padding: 16px 28px
   border-radius: 36px
   border: 2px solid var(--white-color)

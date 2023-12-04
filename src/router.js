@@ -1,18 +1,18 @@
 import VueRouter from "vue-router"
+import LoginPage from "@/pages/login/LoginPage.vue"
 import HomePage from "@/pages/home/HomePage.vue"
-import NotesPage from "@/pages/notes/NotesPage.vue"
 
 export default new VueRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: HomePage,
+      name: "login",
+      component: LoginPage,
     },
     {
-      path: "/notes",
-      name: "notes",
-      component: NotesPage,
+      path: "/home",
+      name: "home",
+      component: HomePage,
     }
   ]
 })

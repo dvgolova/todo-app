@@ -5,7 +5,8 @@
       .button-wrapper(v-on:click="close")
         v-button(icon="close", round)
       .content.flex
-        .title.h2(v-if="title") {{title}}
+        header
+          h2.h2(v-if="title") {{title}}
         slot
 </template>
 
