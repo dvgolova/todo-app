@@ -8,14 +8,30 @@
   font-family: Montserrat-Regular
   position: relative
 
+html
+  line-height: 1.15
+  -webkit-text-size-adjust: 100%
+
 body
   height: 100%
   width: 100%
+  margin: 0
 
 div
   box-sizing: border-box
+
 span
   cursor: default
+
+img
+  border-style: none
+
+button, input, textarea
+  font-family: inherit
+  font-size: 100%
+  line-height: 1.15
+  margin: 0
+
 ul
   margin-block-start: 0
   margin-block-end: 0
@@ -32,23 +48,30 @@ li::marker
   text-align: start !important
   text-align-last: start !important
 
-.h1
-  font-family: Montserrat-Black
-  font-weight: 900
+h1, h2, h3, h4
+  margin-block-start: 0px
+  margin-block-end: 0px
+  margin-inline-start: 0px
+  margin-inline-end: 0px
+  cursor: default
+
+h1
   font-size: 104px
+  font-weight: 900
+  font-family: Montserrat-Black
   line-height: 104px
 
-.h2
+h2
   font-weight: 600
   font-size: 48px
   line-height: 72px
 
-.h3
+h3
   font-weight: 400
   font-size: 32px
   line-height: 48px
 
-.h4
+h4
   font-weight: 600
   font-size: 24px
   line-height: 32px

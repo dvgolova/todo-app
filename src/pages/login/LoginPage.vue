@@ -1,8 +1,8 @@
 <template lang="pug">
   .body.flex.h-full.w-full
     .heading.flex
-      .h1 Мои заметки
-      .h3 Не забывай о важном, храни его в облаке.
+      h1.h1 Мои заметки
+      h3.h3 Не забывай о важном, храни его в облаке.
     img.notes-img(src="@/assets/png/notes.png", alt="notes")
 </template>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .header.flex.center-align
+  header.header.flex.center-align
     v-icon(color="var(--green-light-color)", v-if="smallScreen && $route.path === '/home'")
     img.logo(src="@/assets/svg/logo.svg", alt="logo", v-else)
     v-button.login-button(icon="login", label="Вход", @click.native="openModal", v-if="$route.path === '/'")

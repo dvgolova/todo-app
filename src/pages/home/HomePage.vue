@@ -48,9 +48,6 @@ export default ({
       ]
     }
   },
-  created() {
-    console.log(typeof this.openModal)
-  }
 })
 </script>
 
@@ -62,6 +59,9 @@ export default ({
   padding: 40px 0
   &::-webkit-scrollbar
     width: 0
+  // &::-moz-scrollbar
+  //   width: 0
+  scrollbar-width: none
 .add-button
   position: fixed
   bottom: 40px

@@ -74,9 +74,6 @@ export default ({
       this.valid = this.rule(e.target.value)
     }
   },
-  mounted() {
-    console.log(this.counter)
-  }
 })
 </script>
 
