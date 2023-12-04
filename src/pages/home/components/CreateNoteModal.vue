@@ -1,5 +1,5 @@
 <template lang="pug">
-  div  
+  div 
     .input-wrapper.flex
       v-input(label="Название заметки", placeholder="Введите название", v-model="title", counter)
       v-textarea.text(label="Текст заметки", placeholder="Введите текст", v-model="content", counter)
@@ -58,10 +58,11 @@ export default ({
 
 @media (max-width: 1366px)
   .input-wrapper
-    width: 482px
-    height: 282px
+    width: 560px
+    height: 372px
+    row-gap: 0px
     & :deep(.textarea)
-      height: 168px
+      height: 156px
 
 @media (max-width: 768px)
   .input-wrapper
